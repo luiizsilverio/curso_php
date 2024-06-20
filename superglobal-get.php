@@ -18,10 +18,12 @@
 		<h3>$_GET</h3>
 
 
-		<p><?php  ?></p>
-		<br>
+		<pre><?php print_r($_GET); ?></pre>
 
-
+		<p><?php echo $_GET['item']; ?></p>
+    <br>
+		<p><?php echo $_GET['nome']; ?></p>
+    <br>
 
 
 		<?php 
@@ -52,27 +54,35 @@
 									  'calorias' => 521
 						)
 
+          ); 
 
-			); 
+      $item = $_GET['item'];
 		?>
 
-		<?php  ?>
-
 		<h4>Produto: </h4>
-		<p><?php  ?></p>
+		<p>
+      <?php echo $produtos[$item]['nome']; ?>
+    </p>
 		<br>
 		
 		<h4>Descrição: </h4>
-		<p><?php  ?></p>
+		<p><?php echo $produtos[$item]['descricao'];  ?></p>
 		<br>
 		
 		<h4>Calorias: </h4>
-		<p><?php  ?></p>
+		<p><?php echo $produtos[$item]['calorias'];  ?></p>
 		<br>
 
 		<h4><u>Conheça nossos produtos</u></h4><br>
 		
 		<ul>	
+      <?php foreach ($produtos as $chave => $item) { ?>
+        <li>
+          <a href="<?php echo "superglobal-get.php?item=$chave"; ?>">
+            <?php echo $chave . ' - ' . $item['nome']; ?>
+          </a>
+        </li>
+      <?php } ?>
 		</ul>
 
 
@@ -98,25 +108,39 @@
 										),
 			);
 
+      $shirt = $_GET['shirt'];
 		?>
 
 		
 		<br>
 
 		<h4>Produto: </h4>
-		<p>solte o nome aqui</p>
+		<p><?php echo $itens[$shirt]['nome']; ?></p>
 		<br>
 
 		<h4>Tamanhos disponíveis: </h4>
-		<p>solte os tamanhos aqui</p>
+		<p>
+      <?php
+        $tamanhos = $itens[$shirt]['tamanhos']; 
 
+        foreach ($tamanhos as $item) {
+          echo $item . ' ';
+        }
+      ?>
+    </p>
+
+    <br>
+		<h4><u>Conheça nossos produtos</u></h4><br>
 		
-		
-
-
-
-
-
+		<ul>	
+      <?php foreach ($itens as $chave => $valor) { ?>
+        <li>
+          <a href="<?php echo 'superglobal-get.php?shirt=' . $chave; ?>">
+            <?php echo $valor['nome']; ?>
+          </a>
+        </li>
+      <?php } ?>
+		</ul>
 
 
 

@@ -47,13 +47,36 @@
 
 		<h4>Anos de Copa do Mundo: </h4>
 
+		<?php
+			$copas = '';
+
+			for ($ano = 2002; $ano < 2100; $ano += 4) { 
+				$copas = $copas . $ano . ', ';
+			};
+
+			$copas = substr($copas, 0, strlen($copas) -2);
+		?>
+
+
 		<p>apresente aqui os anos</p>
 		<br>
+		<p><?php echo $copas; ?></p>
 
 		<h4>Anos de Olimpíadas: </h4>
 
+		<?php
+			$jogos = '';
+
+			for ($ano = 2000; $ano < 2100; $ano += 4) { 
+				$jogos = $jogos . $ano . ', ';
+			};
+
+			$jogos = substr($jogos, 0, strlen($jogos) -2);
+		?>
+
 		<p>apresente aqui os anos</p>
 		<br>
+		<p><?php echo $jogos; ?></p>
 
 		
 

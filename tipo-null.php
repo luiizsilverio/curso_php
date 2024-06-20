@@ -14,6 +14,17 @@
 
 		<h3>NULL = Ausência de valor</h3>
 
+    <?php 
+      $posts = '';
+      echo var_dump($posts);
+      echo '<br><br>';
+
+      if ($posts == NULL) {
+        echo 'A variável é igual a NULL';
+      } else {
+        echo 'A variável não é igual a NULL';
+      }
+    ?>
 
 		<h3>Resultado da pesquisa</h3>
 

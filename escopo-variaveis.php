@@ -17,15 +17,34 @@
 
 			<?php
 				
+        $num = 10;
+
+        function print_num() {
+          global $num;
+          static $valor;
+
+          $num += 1;
+          $valor += 2;
+
+          echo $num;
+          echo '<br>';
+          echo $valor;
+          echo '<br>';
+        }
 
 			?>
 
 			<p>
-			<?php ?>	
+        <?php 
+          print_num();  
+          print_num();  
+        ?>	
 			</p><br>
 
 			<p>
-			<?php ?>	
+        <?php 
+          echo $num;
+        ?>	
 			</p><br>
 
 			

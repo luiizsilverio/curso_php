@@ -44,7 +44,21 @@
 
 			<?php foreach ($produtos as $item) { ?>
 
-			<option><?php echo $item['nome']; ?></option>
+        <option <?php if ($item['estoque'] <= 0) {echo 'disabled';} ?> >
+          <?php 
+            echo $item['nome']; 
+            
+            $qtd = $item['estoque'];
+
+            if ($qtd <= 0) {
+              echo ' (indisponível)';
+            } elseif ($qtd == 1) {
+              echo ' (última unidade em estoque)';
+            } else {
+              echo " ($qtd em estoque)";
+            } 
+          ?>
+        </option>
 
 			<?php } ?>
 			
@@ -56,14 +70,52 @@
 
 		<p>Apague todo o código acima e tente recriá-lo desde o começo. Crie um array com outros produtos, faça o loop foreach para criar o select box e depois use os condicionais para desabilitar os itens que não estão em estoque.</p><br>
 
-			<p></p>
-			<br>
+    <br>
 
-		
+		<h3>Selecione o veículo usado:</h3>
 
+    <?php
+      $carros = array(
+                  array(
+                    'nome' => 'Fiat Uno',
+                    'valor' => 7000 
+                  ),
+                  array(
+                    'nome' => 'Hyundai HB20',
+                    'valor' => 50000
+                  ),
+                  array(
+                    'nome' => 'Audi Q3',
+                    'valor' => 350000
+                  )
+                )
+    ?>
+
+    <select>
+			<option>Nenhum veículo selecionado</option>
+
+      <?php foreach ($carros as $carro) { ?>
+
+        <option <?php if ($carro['valor'] > 100000) {echo 'disabled';} ?> >
+          <?php 
+            $nome = $carro['nome'];
+            echo $nome;
+            if ($carro['valor'] > 100000) {
+              echo ' (muito caro para você)';
+            } elseif ($carro['valor'] < 10000) {
+              echo ' (barato)';
+            } else {
+              echo ' (dá para comprar)';
+            }
+          ?>
+        </option>
+      
+      <?php } ?>
+
+    </select>
+      
 
 		<?php include 'functions/bottom_index.php'; ?>
-
 
 	</body>
 

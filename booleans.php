@@ -12,7 +12,9 @@
 
 		<h3>True ou False?</h3><br>
 		
-		<p></p>
+    <?php $teste = 3 !== 3.0; ?>
+
+		<p><?php echo var_dump($teste); ?></p>
 
 
 
