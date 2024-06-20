@@ -18,56 +18,52 @@
 		
 		<?php 
 
+      include 'file-to-include.php';
+
+      $temperatura = celsiusToFahrenheit(40);
+      
 		?>
 
 
-		<p><?php ?></p>
+		<p><?php echo $primeiro_nome; ?></p>
+		<p><?php echo $temperatura; ?></p>
 		<br>
 
 
 
 
-		<h3>Componente galeria de fotos</h3>
-		<?php
+		<h3>Componente galeria de fotos - 1</h3>
 
-			$photoGallery = array (
-				
-				'img/prato_1.jpg',
-				'img/prato_2.jpg',
-				'img/prato_3.jpg',
-				'img/prato_4.jpg'
+    <?php
 
-			);
+      $photoGallery = array (
+        
+        'img/prato_1.jpg',
+        'img/prato_2.jpg',
+        'img/prato_3.jpg',
+        'img/prato_4.jpg'
 
-		?>
-		
-		<div class="gallery-001">
+      );
 
-			<?php foreach ($photoGallery as $photo) { ?>
+		  include 'components/gallery-001.php'; 
+    ?>
+			
 
-				<img src="<?php echo $photo; ?>" alt="galeria-fotos">
+		<h3>Componente galeria de fotos - 2</h3>
 
-			<?php } ?>
+    <?php
 
-		</div>
+      $photoGallery = array (
+        
+        'img/prato_5.jpg',
+        'img/prato_6.jpg',
+        'img/prato_7.jpg',
+        'img/prato_8.jpg'
 
-		
+      );
 
-
-
-		
-
-		
-
-		
-		
-
-
-
-
-
-
-
+      include 'components/gallery-001.php'; 
+    ?>
 
 
 
