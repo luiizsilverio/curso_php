@@ -13,6 +13,34 @@
       return $clean_data;
     }
 
+    function insert_cliente($nome, $email) {
+      $server = 'localhost';
+			$user = 'root';
+			$password = 'root';
+			$db_name = 'curso_php';
+			$port = 3306;
+    
+			try {
+
+				$db_connect = new mysqli($server, $user, $password, $db_name, $port);
+
+				$sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', '$email');";
+
+				if ($db_connect->query($sql)) {
+          $msg_envio = 'Formulário enviado com sucesso.';
+        }
+        else {
+					$msg_envio = 'falha no envio dos dados';
+				}
+
+			} 
+			catch (Throwable $e) {
+				$msg_envio = 'falha no envio dos dados: ' . $e->getMessage();
+			}
+
+      return $msg_envio;
+    }
+
   ?>
 
 	<body>
@@ -34,13 +62,23 @@
 
         if ($nome == "") {
           $erro_nome = 'O nome é obrigatório';
-        } elseif ($email == "") {
+        } 
+        elseif ($email == "") {
           $erro_email = 'O e-mail é obrigatório';
-        } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+        } 
+        elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
           $erro_email = 'E-mail inválido';
-        } else {
+        } 
+        else {
           $nome = clear_input($nome);
           $email = clear_input($email);
+
+          $msg_envio = insert_cliente($nome, $email);
+
+          if (str_contains($msg_envio, 'sucesso')) {
+            $nome = NULL;
+            $email = NULL;
+          }
         }
       }
     ?>
@@ -49,7 +87,7 @@
 			
 			Nome: *
 			<br>
-			<input type="text" name="nome" class="field">
+			<input type="text" name="nome" class="field" value="<?php echo $nome; ?>">
 			<br>
       <div class="erro-form">
         <?php echo $erro_nome; ?>
@@ -58,7 +96,7 @@
 			
 			E-mail: *
 			<br>
-			<input type="text" name="email" class="field">
+			<input type="text" name="email" class="field" value="<?php echo $email; ?>">
 			<br>
       <div class="erro-form">
         <?php echo $erro_email; ?>
@@ -67,6 +105,7 @@
 
 			<input type="submit" name="submit" class="submit">
       <div class="sucesso-form">
+        <?php echo $msg_envio; ?>
       </div>  
       <br>
 
