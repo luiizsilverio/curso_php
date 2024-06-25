@@ -23,41 +23,44 @@
 			$user = 'root';
 			$password = 'root';
 			$dbname = 'curso_php';
-			$port = '8889';
+			$port = '3306';
 
 			$db_connect = new mysqli($server, $user, $password, $dbname, $port);
 
 			if ($db_connect->connect_error == true) {
 				echo 'Não foi possível conectar à base de dados.';
-			} else {
-				// echo 'Conectado à base de dados.' . '<br><br>';
+			} 
 
+        $sql = "SELECT * FROM clientes ORDER BY nome;";
 				
-			}
+        $result = $db_connect->query($sql);
 
-		?>
+        if (!$result) {
+          echo 'falha no envio dos dados';
+        }
+    ?>
 
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+      </tr>
 
-		
+      <?php
+        while ($row = $result->fetch_assoc()) {
+          echo '<tr>';
+            echo '<td>';
+            echo $row['nome'];
+          echo '</td>';
 
-
-		
-
-		
-
-
-
-		
-
-		
-
-		
-		
-
-
-
-
-
+          echo '<td>';
+            echo $row['email'];
+            echo '</td>';
+          echo '</tr>';
+        }        
+      ?>
+     
+    </table>
 
 
 
